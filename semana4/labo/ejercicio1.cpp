@@ -69,8 +69,10 @@ char* normalizar(char* frase){
     
     if(j>0 && *(aux + j-1)==' '){
             j--;
-            *(aux + j) = '\0';
+            
     }
+
+    *(aux + j) = '\0';
 
     char* normalizada = new char [j+1];
     strcpy(normalizada, aux);
@@ -106,12 +108,15 @@ char** segmentar(char* normalizada, int numpalabras){
     int i=0;
 
     while (token != nullptr) {
-        *(lista + i) = token;
+
+        int tampal = strlen(token);
+        *(lista + i) = new char [tampal+ 1 ];
+        strcpy(*(lista + i), token);
         token = strtok(nullptr, ", "); // continua analizando la cadena 
+
         i++;
     }
     
-    delete[]normalizada;
 
     return lista;
 }
@@ -123,24 +128,37 @@ void mostrar(char**lista, int numpal){
     }
 }
 
+void liberarmemo (char** lista, int numpal, char* frasenormada){
+    
+    for(int i=0; i<numpal; i++){
+
+        delete[]lista[i];
+    }
+    delete[]lista;
+    delete[]frasenormada;
+
+}
+
 
 
 int main(){
 
-    /*char temp[1000];
+   char* frase = leerfrase();
 
-    cout<<"Ingrese el texo: ";
-    cin.getline(temp, 1000);
+   char* frasenormada = normalizar(frase);
 
-    int len = strlen(temp);
+   int numpal = contarpalabras(frasenormada);
 
-    char* frase = new char[len + 1];
-    strcpy(frase, temp);
+   char** listadepal = segmentar(frasenormada, numpal);
 
-    normalizar(frase);*/
+   mostrar(listadepal, numpal);
+
+   cout<<endl;
 
 
-    
+   liberarmemo(listadepal, numpal,frasenormada);
+
+
 
     return 0;
 }
