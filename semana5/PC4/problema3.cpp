@@ -17,6 +17,7 @@ producto crearproducto(int codigo, const char*nombre, double precio, int stock){
 
     nuevo.codigo = codigo;
     nuevo.nombre = new char[tam + 1];
+    strcpy(nuevo.nombre, nombre);
     nuevo.precio = precio;
     nuevo.stock = stock;
 
@@ -29,40 +30,40 @@ producto* crearinventario(int n){
 
     A[0] = crearproducto(100, "teclado", 10.5, 5 );
     A[1] = crearproducto(101, "mouse", 21, 10);
-    A[2] = crearproducto(102, "monitor", 31, 15);
+    A[2] = crearproducto(102, "monitor", 31.5, 15);
     A[3] = crearproducto(103, "laptop", 42, 20);
     A[4] = crearproducto(104, "impresora", 52.5, 25);
 
+    return A;
+
 }
 
-producto* buscarproducto(producto* inventario, int codigobuscado){
+producto* buscarproducto(producto* inventario, int codigobuscado, int n){
 
-    while(inventario != nullptr){
-        if(inventario->codigo == codigobuscado){
-            return inventario;
+   for (int i = 0; i < n; i++) {
+        if (inventario[i].codigo == codigobuscado) {
+            return &inventario[i]; // Retorna la dirección del producto encontrado
         }
-        inventario++;
     }
-
     return nullptr;
 
+
 }
 
-void mostrarinventario(producto* inventario){
-    while(inventario != nullptr){
-        cout<<"codigo: "<<inventario->codigo;
-        cout<<" nombre: "<<inventario->nombre;
-        cout<<" precio: "<<inventario->precio;
-        cout<<" stock: "<<inventario->stock;
+void mostrarinventario(producto* inventario, int n){
+     for (int i = 0; i < n; i++) {
+        cout<<"codigo: "<<inventario[i].codigo;
+        cout<<" nombre: "<<inventario[i].nombre;
+        cout<<" precio: "<<inventario[i].precio;
+        cout<<" stock: "<<inventario[i].stock;
         cout<<endl;
-        inventario++;
     }
 }
 
 void liberarmemoria(producto* inventario, int n){
 
     for(int i=0; i<n; i++){
-        delete inventario[i].nombre;
+        delete[] inventario[i].nombre;
     }
 
     delete[] inventario;
@@ -74,13 +75,15 @@ int main(){
 
     producto* inventario = crearinventario(5);
 
-    mostrarinventario(inventario);
+    mostrarinventario(inventario, 5);
 
-    
+    producto* encontrado = buscarproducto(inventario, 102, 5);
 
-    if(buscarproducto(inventario, 102) != nullptr){
-        cout<<"buscando producto con codigo 102 ..."<<endl;
-        cout<<"producto encontrado: "<<inventario->nombre<<" precio: "<<inventario->precio;
+    cout<<"buscando producto con codigo 102 ..."<<endl;
+
+    if(encontrado != nullptr){
+        
+        cout<<"producto encontrado: "<<encontrado->nombre<<" precio: "<<encontrado->precio;
 
     }else{
         cout<<"no se encontro";

@@ -30,25 +30,29 @@ void asignarvalores(seleccion A[]){
         int golescontra = 0;
         int num = 0;
 
-        for(int i=0; i<A[i].PG; i++){
+        for(int j=0; j<A[i].PG; j++){
+            int gf = rand()%5 + 1;
+            int gc = rand()%gf;
 
-        golesfavor += rand()%5 + 1;
-        golescontra += rand()%(6-golesfavor+1);
+            golesfavor += gf;
+            golescontra += gc;
         
         }
 
-        for(int i=0; i<A[i].PE; i++){
+        for(int j=0; j<A[i].PE; j++){
 
-        num = rand()%5 + 1;
+            num = rand()%6;
 
-        golesfavor += num;
-        golescontra += num;
+            golesfavor += num;
+            golescontra += num;
         }
 
-        for(int i=0; i<A[i].PP; i++){
+        for(int j=0; j<A[i].PP; j++){
+            int gc = rand()%5 + 1;
+            int gf = rand()%gc;
 
-        golescontra += rand()%5 + 1;
-        golesfavor += rand()%(5-golescontra+1);
+        golescontra += gc;
+        golesfavor += gf;
         
         }
 
@@ -77,8 +81,8 @@ void buscarcampeon(seleccion A[]){
 
     
     for(int i=0; i<5; i++){
-        cout<<A[i].nombre<<"    "<<A[i].PG<<"    "<<A[i].PE<<"    "<<A[i].PP<<"    "<<A[i].GF<<
-        "    "<<A[i].GC<<"    "<<A[i].DG<<"    "<<A[i].PT<<"     "<<A[i].REND<<endl;
+        cout<<A[i].nombre<<"\t"<<"\t"<<A[i].PG<<"\t"<<A[i].PE<<"\t"<<A[i].PP<<"\t"<<A[i].GF<<
+        "\t"<<A[i].GC<<"\t"<<A[i].DG<<"\t"<<A[i].PT<<"\t"<<A[i].REND<<endl;
     }
 
     cout<<"CAMPEON: "<<A[0].nombre<<endl;
@@ -98,7 +102,7 @@ int main(){
 
     asignarvalores(A);
 
-    cout<<"SELECCION     PG    PE    PP    GF    GC    DG    PT    REND"<<endl;
+    cout<<"SELECCION       PG      PE      PP      GF      GC      DG      PT      REND"<<endl;
 
     buscarcampeon(A);
 

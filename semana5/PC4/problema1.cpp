@@ -74,6 +74,19 @@ void multiplicarpolinomio(polinomio p1,polinomio p2, polinomio p3){
 
 }
 
+void mostarpolinomio(polinomio p1, string nombre){
+
+    cout<<"Polinomio "<<nombre<<" : ";
+
+    for(int i = p1.grado; i>=0; i--){
+        cout<<p1.coef[i]<<"x^"<<i;
+        if(i>0){
+            cout<<" + ";
+        }
+    }
+
+}
+
 
 
 
@@ -87,6 +100,13 @@ int main(){
     p1.coef = new double [p1.grado + 1]{3,0,1};//los coeficientes van de menor a mayor exponente
     p2.coef = new double [p2.grado + 1]{5,-4};
     p3.coef = new double [p3.grado + 1]{1,0,3};
+
+    mostarpolinomio(p1,"primero");
+    cout<<endl;
+    mostarpolinomio(p2, "segundo");
+    cout<<endl;
+    mostarpolinomio(p3, "tercero");
+    cout<<endl;
 
     sumarpolinomio(p1,p2,p3);
     cout<<endl;
