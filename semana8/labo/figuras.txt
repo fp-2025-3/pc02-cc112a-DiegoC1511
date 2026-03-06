@@ -1,0 +1,27 @@
+----REPORTE FIGURAS GEOMETRICAS----
+
+Figura 1: 
+Nombre: Sol
+Area: 346.361
+Perimetro: 65.9736
+Color: (255,255, 0)
+------------------------------------------------------
+Figura 2: 
+Nombre: Cancha
+Area: 200
+Perimetro: 60
+Color: (0,255, 0)
+------------------------------------------------------
+Figura 3: 
+Nombre: Moneda
+Area: 12.5664
+Perimetro: 12.5664
+Color: (192,192, 192)
+------------------------------------------------------
+Figura 4: 
+Nombre: Libro
+Area: 40
+Perimetro: 26
+Color: (0,0, 255)
+------------------------------------------------------
+Area total: 598.928
